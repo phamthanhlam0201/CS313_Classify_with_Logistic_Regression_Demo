@@ -1,4 +1,5 @@
-<!-- pip freeze > requirements.txt
+pip freeze > requirements.txt
 
 pip install -r requirement.txt
-streamlit run demo.py -->
+
+streamlit run demo.py
