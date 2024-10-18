@@ -2,36 +2,69 @@ import streamlit as st
 import cv2
 import os
 import numpy as np
+import pandas as pd
 from skimage.feature import graycomatrix, graycoprops
 from joblib import load
-import matplotlib.pyplot as plt
+# from sklearn.decomposition import PCA
+# from sklearn.preprocessing import StandardScaler
 
 classes = ['Lung Adenocarcinoma', 'Lung Benign Tissue <3', 'Lung Squamous Cell Carcinoma']
+n = 16 # Số đặc trưng sau khi giảm chiều
 
 def compute_glcm_features(image):
+
     # Chuyển đổi ảnh sang grayscale
     image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-    features = []
-    distances = [1]  # You can experiment with different distances
-    #angles = [0, np.pi/4, np.pi/2, 3*np.pi/4]  # You can experiment with different angles
-    glcm = graycomatrix(image, distances=distances, angles=[0], levels=256,
-                        symmetric=True, normed=True)
-    contrast = graycoprops(glcm, 'contrast').ravel()
-    energy = graycoprops(glcm, 'energy').ravel()
-    homogeneity = graycoprops(glcm, 'homogeneity').ravel()
-    correlation = graycoprops(glcm, 'correlation').ravel()
-    asm = graycoprops(glcm, 'ASM').ravel()  # Angular Second Moment
-    entropy = -np.sum(glcm * np.log(glcm + 1e-10))  # Compute entropy manually
-    glcm_features = np.concatenate((contrast, energy, homogeneity, correlation, asm, [entropy]))
-    features.append(glcm_features)
-    return np.array(features)
+    # Tính toán với 8 hướng xung quanh (0°, 45°, 90°, 135°, 180°, 225°, 270°, 315°)
+    angles = [0, np.pi/4, np.pi/2, 3*np.pi/4, np.pi, 5*np.pi/4, 3*np.pi/2, 7*np.pi/4]
 
-def predict_image(image,model):
+    # Tính GLCM và các đặc trưng trực tiếp
+    glcm = graycomatrix(image, distances=[1], angles=angles, levels=256, symmetric=True, normed=True)
+    
+    # Tính các đặc trưng và kết hợp chúng trong một dòng
+    features = np.concatenate([
+        graycoprops(glcm, 'contrast').ravel(),
+        # Tính toán đặc trưng contrast (độ tương phản) của ma trận đồng xuất GLCM. Độ tương phản đo lường mức độ thay đổi trong cường độ pixel, cho biết sự khác biệt giữa các pixel trong ảnh.
+        
+        graycoprops(glcm, 'energy').ravel(), 
+        # ASM Tính toán đặc trưng energy (năng lượng) của GLCM, thường được gọi là Angular Second Moment (ASM). Đặc trưng này cho biết mức độ đồng nhất trong cường độ pixel.
+        
+        graycoprops(glcm, 'homogeneity').ravel(),
+        # Tính toán đặc trưng homogeneity (đồng nhất) của GLCM. Đặc trưng này đo lường mức độ tương đồng giữa các pixel.
+        
+        graycoprops(glcm, 'correlation').ravel(), 
+        # Tính toán đặc trưng correlation (tương quan) của GLCM. Đặc trưng này đo lường mức độ liên quan giữa các pixel.
+        
+        [-np.sum(glcm * np.log(glcm + 1e-10))]  
+        # Tính toán entropy (độ hỗn loạn) của GLCM. Entropy đo lường mức độ không chắc chắn trong phân phối cường độ pixel. Để tránh lỗi số học khi tính log, một hằng số nhỏ (1e-10) được cộng vào GLCM.
+    ])
+    
+    return features
+
+def predict_image(image,scaler, pca, model):
     X = compute_glcm_features(image)
+    
+    X = scaler.transform([X])
+    X = pca.transform(X)
+    
     y_pred = model.predict(X)
-    print(X)
+    
+    # Tạo tên cột cho DataFrame
+    columns = []
+    # Mỗi tập hợp đặc trưng GLCM gồm 4 đặc trưng cho mỗi góc (tổng cộng 8 góc)
+    # (Contrast, Energy, Homogeneity, Correlation)
+    for i in range(n):
+        columns.extend([
+            f"Feature_{i}", 
+        ])
+    df_X = pd.DataFrame(X, columns=columns)
+    
+    # In DataFrame ra màn hình
+    print(df_X)
     return y_pred
 
+scaler_loaded = load('scaler.joblib')
+pca_loaded = load('pca_transformer.joblib')
 lr_loaded = load('logistic_regression_model.joblib')
 
 
@@ -66,7 +99,7 @@ if uploaded_file_image is not None:
         # Create the button
         with col3:
             if st.button("Click me to classify!"):
-                y_pred = predict_image(image, lr_loaded)
+                y_pred = predict_image(image, scaler_loaded, pca_loaded, lr_loaded)
                 y_predict = y_pred[0]
                 # Display the predicted label
     with st.container():
