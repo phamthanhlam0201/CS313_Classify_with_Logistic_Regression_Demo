@@ -135,8 +135,10 @@ if uploaded_file_image is not None:
         with column2:
             # Giả sử y_pred[0] có giá trị, nếu là 0 thì đổi nền thành đỏ
             button_color = "white"  # Mặc định là trắng
+            text_color = 'black' # Màu chữ 
             if y_predict == 2:  # Nếu y_pred[0] là 0 thì đổi màu nền thành đỏ
                 button_color = "red"
+                text_color = "white"
             st.markdown(
                 f"""
                 <div style='text-align: center;'>
@@ -161,8 +163,10 @@ if uploaded_file_image is not None:
         with column3:
             # Giả sử y_pred[0] có giá trị, nếu là 0 thì đổi nền thành đỏ
             button_color = "white"  # Mặc định là trắng
+            text_color = 'black' # Màu chữ 
             if y_predict == 1:  # Nếu y_pred[0] là 0 thì đổi màu nền thành đỏ
                 button_color = "red"
+                text_color = "white"
             st.markdown(
                 f"""
                 <div style='text-align: center;'>
@@ -184,8 +188,6 @@ if uploaded_file_image is not None:
                 """,
                 unsafe_allow_html=True
             )
-    # if y_predict != -1:
-    #     st.markdown(f"<h4 style='text-align: center;'>PREDICTED LABEL: {classes[y_predict].upper()}</h4>", unsafe_allow_html=True)
 
 else:
     st.warning("Please upload an image file to proceed.")
