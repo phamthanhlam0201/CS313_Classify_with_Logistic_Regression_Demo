@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\SEMESTER 7\\CS313 Data Mining and Application\\LogisticRegression_Demo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\SEMESTER 7\\CS313 Data Mining and Application\\LogisticRegression_Demo\\demo.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:demo.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "demo.py",
+              "DocumentMoniker": "E:\\SEMESTER 7\\CS313 Data Mining and Application\\LogisticRegression_Demo\\demo.py",
+              "RelativeDocumentMoniker": "demo.py",
+              "ToolTip": "E:\\SEMESTER 7\\CS313 Data Mining and Application\\LogisticRegression_Demo\\demo.py",
+              "RelativeToolTip": "demo.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKISURBVDhPtZRBTxpBFMd/gCyRWnVdJphVIhhWT3rT72BMG5p6qGliY9P6SfwCnvwI9KAJJe3VqzEe1SAHG8OBABUqKKLI7vYyY5aVND20/\u002BQlm5l9vzfz3rwH/1Ku6wZ8S2EgBrwAQr49v2ygDVwBj2rRC9SB10AGSAGaZ2\u002BQusAlkAdyQMO7GQY\u002BAGUZ2flLs4EK8EkynjQpozyDhcNhZ2lpyRFCOMFg0A9U0G\u002BACRCUwJdA0puCYDDIzMwMW1tbLC8vMzw8zMLCAmNjYwQCfakPyBSN4Em8AN7LgmCaJisrK2QyGcbHx2k0GlQqFUzTxLIsdF3HcRxubm4UtAV8Aa5UqHl55XmAtbU1NjY2SKVSuK7L3d0d9XqdSCSCpmnYtk0ul2NnZ0cBfwCvgII6YQx4p04Yi8W4vb0lEomwuLiIZVlYlkUikcAwDGzbZm9vj2KxqIC/gCxwNRA4PT1Ns9mkWCxydHTE6Ogo8Xic6\u002BtrOp0O2WyWw8NDqtXqM6AqSp9CoRC9Xo92u02pVGJ3d5darUa32\u002BX09JSDgwPu7\u002B/9buCpcp\u002BGhoaIRqMYhkE6nSaRSOA4Dg8PD5ycnNBqtXh8fGqOPg0EqicyNzeHEALDMHBdl06nw\u002BzsLOvr6ySTSb8b\u002BICu\u002Bjg\u002BPqZUKjE1NYVpmgghsG2bXq\u002BHruuUy2XOz889rrjKXxVlAngLxAHa7TaFQoGLiwvS6TRCCIQQnJ2dsb29TT6fp9lseoFV\u002BQ7ramES\u002BDqo9TRNc1ZXV53NzU0nGo36207Zd9V6SmHgo2z0Z9A/mA3UgM9qOnmbcgJ4Iy0lg/jnpZIrZ\u002BClvNm\u002Buq7fQZOPe8RTMP8/qniOHLA/5Wz8P/oN/swBV6jrMtwAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-10-31T08:53:50.308Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
