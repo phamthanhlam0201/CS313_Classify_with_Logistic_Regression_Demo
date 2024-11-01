@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 from skimage.feature import graycomatrix, graycoprops
 from joblib import load
-# from sklearn.decomposition import PCA
-# from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 classes = ['Lung Adenocarcinoma', 'Lung Benign Tissue <3', 'Lung Squamous Cell Carcinoma']
 n = 16 # Số đặc trưng sau khi giảm chiều
